@@ -1,8 +1,8 @@
 <template>
     <form class='form-inline'>
-        <input type="text" class="form-control" placeholder="Nazwa" v-model="form.name.v">
-        <input type="text" class="form-control" placeholder="Cena" v-model.number="form.price.v">
-        <input type="text" class="form-control" placeholder="Kategoria" v-model="form.category.v">
+        <input type="text" class="form-control" placeholder="Nazwa" v-model="form.name">
+        <input type="text" class="form-control" placeholder="Cena" v-model.number="form.price">
+        <input type="text" class="form-control" placeholder="Kategoria" v-model="form.category">
         <button type="submit" class="btn btn-primary" @click='postExpense'>Dodaj</button>
     </form>
 </template>
@@ -16,24 +16,24 @@ export default {
     data(){
         return {
             form:{
-                name: { v:'', e:false },
-                price: { v:0, e:false },
-                category: { v:'', e:false },
+                name: '',
+                price: '',
+                category: '',
             }
         }
     },
 
     methods: {
         postExpense(){
-            axios.post('expense.json', this.form)
+            axios.post('expenses_list', this.form)
                 .then(response => {
                     console.log(response);
                     this.$emit('sentit')
                 })
             this.form = {
-                name: { v:'', e:false },
-                price: { v:'', e:false },
-                category: { v:'', e:false },
+                name: '',
+                price: '',
+                category: '',
             }
 
 

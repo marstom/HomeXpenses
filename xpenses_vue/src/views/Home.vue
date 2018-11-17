@@ -113,6 +113,13 @@ export default {
 
     // remove item from list, perform DELETE
     remove(it, key){
+      let primary_key = it.pk
+      axios.delete(`expense/${primary_key}`)
+        .then(response =>{
+          console.log(response)
+          this.getData()
+        })
+      // console.log(it.pk, key)
     },
 
     // post all changes to database
