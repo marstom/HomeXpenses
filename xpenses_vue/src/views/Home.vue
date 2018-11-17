@@ -72,6 +72,11 @@ export default {
           price: { v:'...', e:false },
           category: { v:'...', e:false },
         },
+        {
+          name: { v:'kromka', e:false },
+          price: { v:'2.50', e:false },
+          category: { v:'Jedzenie', e:false },
+        },
       ],
       originalData: [], // for backup
       current: '',
@@ -90,15 +95,24 @@ export default {
       //    })
     },
 
+    // remove item from list, perform DELETE
     remove(it, key){
     },
 
+    // post all changes to database
     saveAllChanges(){
+      for(let key in this.tableItems){
+        this.tableItems[key].name.e = false
+        this.tableItems[key].price.e = false
+        this.tableItems[key].category.e = false
+      }
     },
 
     undoAllChanges(){
     },
 
+    // method
+    // if user echange field, color it blue, set e to true
     editedInput(e, key, typ){
       if(typ === 'name'){
         this.tableItems[key].name.v = e.target.value
