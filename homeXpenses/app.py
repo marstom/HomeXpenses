@@ -85,7 +85,7 @@ class ApiExpensesList(Resource):
             expense = Expense.query.get(int(el['pk']))
             expense.name = el['name']['v']
             expense.price = el['price']['v']
-            expense.category = el['price']['v']
+            expense.category = el['category']['v']
         
         db.session.commit()
         return {'message': 'success!'}, 302

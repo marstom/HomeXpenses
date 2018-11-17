@@ -8,6 +8,7 @@ python manage.py db upgrade
 
 Run:
 
+source .env
 python manage.py runserver
 
 

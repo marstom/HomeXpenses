@@ -5,12 +5,12 @@
   <div class="row justify-content-md-center">
 
   <div class="col-3"></div>
-  <h1 class="col-6">Lista wydatków</h1>
+  <h1 class="col-6 header">Lista wydatków</h1>
   <div class="col-3"></div>
 
   <div class="filter row">
-    <label>Nazwa:
-      <input type="text" class="form-control">
+    <label>Filtruj wydatki:
+      <input type="text" v-model="filter" class="form-control">
     </label>
   </div>
 
@@ -160,6 +160,20 @@ export default {
       }
 
     },
+
+  },
+  computed:{
+    filter: {
+      set(v){
+        console.log('value', v)
+        let filtered = this.tableItems.filter((value) => {
+          return value.name.v.includes(v)
+        })
+        this.tableItems = filtered
+        return v
+      }
+    }
+
   }
 }
 </script>
@@ -168,6 +182,10 @@ export default {
 
 .edited {
   background-color: lightskyblue;
+}
+
+.header {
+  color: rgb(58, 58, 158);
 }
 
 </style>

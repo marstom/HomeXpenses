@@ -8,7 +8,7 @@
     <div class="collapse navbar-collapse" id="navbarColor03">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <router-link tag='a' to='/' class="nav-link" active-class="active" exact>Home <span class="sr-only">(current)</span></router-link>
+          <router-link tag='a' to='/' class="nav-link" active-class="active" exact>Edycja wydatków <span class="sr-only">(current)</span></router-link>
         </li>
         <li class="nav-item">
           <router-link tag='a' :to="{name: 'info'}" class="nav-link" active-class="active">Info</router-link>
