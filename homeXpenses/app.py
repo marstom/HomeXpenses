@@ -3,12 +3,14 @@ from flask_sqlalchemy import SQLAlchemy
 import os
 from flask_restful import Api, Resource, reqparse
 import json
+from flask_cors import CORS
 
 
 app = Flask(__name__)
 app.config.from_object(os.environ['APP_SETTINGS'])
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 api = Api(app) # REST api
+CORS(app)
 db = SQLAlchemy(app)
 
 
@@ -25,7 +27,7 @@ def index():
             {
                 'name': el.name,
                 'price': el.price,
-                'category': el.category
+                'category': el.category,
             }
         )
     
@@ -50,16 +52,21 @@ class ApiExpensesList(Resource):
             print(el.name, el.category, el.price)
             expenses_list.append(
                 {
-                    'name': el.name,
-                    'price': el.price,
-                    'category': el.category
+                'name': el.name,
+                'price': el.price,
+                'category': el.category,
                 }
+                # {
+                # 'name': {'v':el.name, 'e':False},
+                # 'price': {'v':el.price, 'e':False},
+                # 'category': {'v':el.category, 'e':False}
+                # }
             )
         return expenses_list, 200
     
     def post(self):
         """
-
+        http POST http://localhost:5000/expenses_list name="kupno ogórków" price=213 category="Jedzenie"
         """
         data = json.loads(request.data)
         new_expense = Expense(

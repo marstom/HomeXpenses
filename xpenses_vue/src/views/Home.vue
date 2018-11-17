@@ -90,14 +90,25 @@ export default {
   },
   methods:{
     getData(){
-      // axios.get('/expenses_list')
-      //   .then(response => {
-      //     this.tableItems = response.data
-      //     this.originalData = JSON.parse(JSON.stringify(response.data))
-      //   })
-      //    .catch(error => {
-      //      console.log(error)
-      //    })
+      axios.get('expenses_list')
+      .then(response => {
+        this.tableItems = []
+        let data = response.data
+        console.log(data)
+
+        for(let i=0; i<data.length; i++){
+          let temp = data[i]
+          data[i].name = {v:temp.name, e:false}
+          data[i].price = {v:temp.price, e:false}
+          data[i].category = {v:temp.category, e:false}
+          console.log(data[i])
+        }
+
+        this.tableItems = data
+      })
+      .catch(error => {
+        console.log(error)
+      })
     },
 
     // remove item from list, perform DELETE

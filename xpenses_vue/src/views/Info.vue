@@ -2,23 +2,36 @@
   <div class="about">
     <h1>Ta strona jest testopa</h1>
     <div>Testinig content print here .... {{ hello }} </div>
-    <div>Testinig content print here .... {{ getExpensesList() }} </div>
-    <div></div>
+    <hr>
+
+    <div v-for="e in expenses"> {{ e }} </div>
+    <hr>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
+  created(){
+    this.getExpensesList()
+  },
+
   data(){
     return {
-      hello: 'tomek'
+      hello: 'tomek',
+      expenses: ''
 
     }
   },
 
   methods: {
     getExpensesList(){
-      return {1: 'e1', 2:'e2'}
+      axios.get('expenses_list')
+      .then(response => {
+        this.data = response.data
+        this.expenses = response.data
+      })
     }
   }
 

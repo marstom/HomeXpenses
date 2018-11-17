@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 import axios from 'axios'
 
-axios.defaults.baseURL = 'https://vue-xpenses.firebaseio.com/'
+axios.defaults.baseURL = 'http://localhost:5000/'
 
 Vue.config.productionTip = false
 
