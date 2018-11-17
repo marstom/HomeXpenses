@@ -52,15 +52,11 @@ class ApiExpensesList(Resource):
             print(el.name, el.category, el.price)
             expenses_list.append(
                 {
+                'pk': el.id,
                 'name': el.name,
                 'price': el.price,
                 'category': el.category,
                 }
-                # {
-                # 'name': {'v':el.name, 'e':False},
-                # 'price': {'v':el.price, 'e':False},
-                # 'category': {'v':el.category, 'e':False}
-                # }
             )
         return expenses_list, 200
     
@@ -109,6 +105,16 @@ class ApiExpense(Resource):
             'category': el.category,
         }
         return expense_dict, 302
+    
+    def delete(self, pk):
+        """
+        Delete entry from table
+        http DELETE http://localhost:5000/expense/3
+        """
+        el = Expense.query.get(pk)
+        db.session.delete(el)
+        db.session.commit()
+        return {'message': f'Delete object with id {pk}'}
 
 # api.add_resource(ApiExpensesList, '/expenses_list', endpoint='expenses_list')
 # api.add_resource(ApiExpensesList, '/expense/<pk>', endpoint='expense')
