@@ -1,5 +1,5 @@
 from app import db
-from sqlalchemy.dialects.postgresql import JSON
+from sqlalchemy.dialects.sqlite import DECIMAL
 
 
 class Expense(db.Model):
