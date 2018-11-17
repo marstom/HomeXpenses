@@ -77,6 +77,11 @@ export default {
           price: { v:'2.50', e:false },
           category: { v:'Jedzenie', e:false },
         },
+        {
+          name: { v:'dżem', e:false },
+          price: { v:'8.50', e:false },
+          category: { v:'Jedzenie', e:false },
+        },
       ],
       originalData: [], // for backup
       current: '',

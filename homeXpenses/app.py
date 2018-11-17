@@ -41,7 +41,9 @@ def test_add():
 @api.resource('/expenses_list')
 class ApiExpensesList(Resource):
     def get(self):
-        """ Get list of expenses """
+        """ 
+        Get list of expenses
+        """
         qu = Expense.query.all()
         expenses_list = []
         for el in qu:
@@ -54,6 +56,20 @@ class ApiExpensesList(Resource):
                 }
             )
         return expenses_list, 200
+    
+    def post(self):
+        """
+
+        """
+        data = json.loads(request.data)
+        new_expense = Expense(
+                name=data.get('name'),
+                price=data.get('price'),
+                category=data.get('category'),
+            )
+        db.session.add(new_expense)
+        db.session.commit()
+        return {'message': 'successfull add expense!'}
     
 @api.resource('/expense/<int:pk>')
 class ApiExpense(Resource):
