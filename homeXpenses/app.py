@@ -74,6 +74,22 @@ class ApiExpensesList(Resource):
         db.session.commit()
         return {'message': 'successfull add expense!'}
     
+    def patch(self):
+        """
+        Risky function, uptades all entrys in database
+        http PATCH http://localhost:5000/expenses_list data="{json}"
+        """
+        data = json.loads(request.data)
+        print(data)
+        for el in data:
+            expense = Expense.query.get(int(el['pk']))
+            expense.name = el['name']['v']
+            expense.price = el['price']['v']
+            expense.category = el['price']['v']
+        
+        db.session.commit()
+        return {'message': 'success!'}, 302
+    
 @api.resource('/expense/<int:pk>')
 class ApiExpense(Resource):
     pass
