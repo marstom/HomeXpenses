@@ -32,6 +32,9 @@ export default {
         this.data = response.data
         this.expenses = response.data
       })
+      .catch(error => {
+        console.log(error)
+      })
     }
   }
 

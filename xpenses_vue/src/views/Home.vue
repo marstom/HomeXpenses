@@ -129,6 +129,15 @@ export default {
         this.tableItems[key].price.e = false
         this.tableItems[key].category.e = false
       }
+
+      axios.patch('expenses_list', this.tableItems)
+        .then(response => {
+          console.log(response)
+          this.getData()
+        })
+          .catch(error =>{
+            console.log(error)
+        })
     },
 
     undoAllChanges(){
